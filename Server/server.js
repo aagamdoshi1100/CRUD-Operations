@@ -1,5 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+require("dotenv").config();
+const Connection = require("./database/connection");
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -11,3 +15,8 @@ app.get("/", (req, res) => {
     status: "success",
   });
 });
+
+app.use(express.json());
+const authRouter = require("./routes/user.routes");
+app.use("/", authRouter);
+Connection();
