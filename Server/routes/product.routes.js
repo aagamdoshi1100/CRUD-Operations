@@ -1,12 +1,15 @@
 const express = require("express");
 const { Product } = require("../models/product.model");
+const jwt = require("jsonwebtoken");
 const productRouter = express.Router();
 
 productRouter.get("/", async (req, res) => {
   try {
+    const decoded = jwt.verify(req.headers.authorization, process.env.SECRET);
     const getAllProducts = await Product.find({});
     res.status(200).json({
       data: getAllProducts,
+      isAdmin: decoded.isAdmin,
     });
   } catch (e) {
     console.error(e);

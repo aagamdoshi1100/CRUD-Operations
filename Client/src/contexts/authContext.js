@@ -23,6 +23,7 @@ export function AuthContextProvider({ children }) {
     isAdmin: false,
     loading: false,
   });
+  const navigate = useNavigate();
 
   const signIn = async () => {
     try {
@@ -42,7 +43,13 @@ export function AuthContextProvider({ children }) {
         throw resData;
       } else {
         localStorage.setItem("token", resData.token);
-        setUser({ ...user, loading: false, inputs: reset.inputs });
+        setUser({
+          ...user,
+          loading: false,
+          inputs: reset.inputs,
+          isAdmin: resData.loggedInUser.isAdmin,
+        });
+        navigate("/products");
       }
     } catch (err) {
       setUser({ ...user, loading: false });
@@ -50,8 +57,13 @@ export function AuthContextProvider({ children }) {
     }
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser, signIn }}>
+    <AuthContext.Provider value={{ user, setUser, signIn, logoutHandler }}>
       {children}
     </AuthContext.Provider>
   );

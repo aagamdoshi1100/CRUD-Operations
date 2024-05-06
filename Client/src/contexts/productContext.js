@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { API_URL } from "../constants";
+import useAuthContext from "./authContext";
 
 const ProductContext = createContext();
 
@@ -24,6 +25,7 @@ const ProductContextProvider = ({ children }) => {
     enableEdit: false,
     editId: "",
   });
+  const { user, setUser } = useAuthContext();
 
   const fetchAllProducts = async () => {
     try {
@@ -31,7 +33,12 @@ const ProductContextProvider = ({ children }) => {
         ...products,
         loading: true,
       });
-      const fetchProducts = await fetch(`${API_URL}/products`);
+      const fetchProducts = await fetch(`${API_URL}/products`, {
+        method: "GET",
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
+      });
       const responseProductData = await fetchProducts.json();
       if (!fetchProducts.ok) {
         throw responseProductData;
@@ -41,6 +48,10 @@ const ProductContextProvider = ({ children }) => {
           ...products,
           loading: false,
           allProducts: responseProductData.data ?? [],
+        });
+        setUser({
+          ...user,
+          isAdmin: responseProductData.isAdmin,
         });
       }
     } catch (err) {
