@@ -43,7 +43,6 @@ const ProductContextProvider = ({ children }) => {
       if (!fetchProducts.ok) {
         throw responseProductData;
       } else {
-        console.log(responseProductData);
         setProducts({
           ...products,
           loading: false,

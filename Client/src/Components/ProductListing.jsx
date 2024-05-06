@@ -35,11 +35,7 @@ const ProductListing = () => {
       />
       {Array.isArray(products.allProducts) &&
         products.allProducts.length > 0 &&
-        products.allProducts.map((pro, index) => (
-          <>
-            <Card data={pro} key={pro._id} />
-          </>
-        ))}
+        products.allProducts.map((pro) => <Card data={pro} key={pro._id} />)}
       {products.enableBox && <InputContainer />}
     </div>
   );

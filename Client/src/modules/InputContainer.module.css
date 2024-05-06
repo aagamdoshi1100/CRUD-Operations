@@ -21,7 +21,7 @@
 
 .inputField {
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -48,6 +48,11 @@
 .addButton {
   background-color: #4caf50;
   color: white;
+}
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
 @media (min-width: 768px) {
