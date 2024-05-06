@@ -124,6 +124,29 @@ const ProductContextProvider = ({ children }) => {
     }
   };
 
+  const deleteProduct = async (productId) => {
+    const getToken = localStorage.getItem("token");
+    try {
+      const deleteResponse = await fetch(`${API_URL}/products/${productId}`, {
+        method: "DELETE",
+        headers: { authorization: getToken },
+      });
+      const deleted = await deleteResponse.json();
+      if (!deleteResponse.ok) {
+        throw deleted;
+      } else {
+        setProducts({
+          ...products,
+          allProducts: products.allProducts.filter(
+            (pro) => pro._id !== productId
+          ),
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -132,6 +155,7 @@ const ProductContextProvider = ({ children }) => {
         addProduct,
         fetchAllProducts,
         editProduct,
+        deleteProduct,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import { useProductContext } from "../contexts/productContext";
 
 const Card = ({ data }) => {
   const { _id, name, discountPercentage, price } = data;
-  const { setProducts, products } = useProductContext();
+  const { setProducts, products, deleteProduct } = useProductContext();
   return (
     <div className={cardStyle.container}>
       <p className={cardStyle.cardHeading}>{name}</p>
@@ -31,7 +31,7 @@ const Card = ({ data }) => {
           })
         }
       />
-      <MdDeleteOutline size="1.8em" />
+      <MdDeleteOutline size="1.8em" onClick={() => deleteProduct(_id)} />
     </div>
   );
 };
