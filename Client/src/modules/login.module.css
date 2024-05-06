@@ -1,0 +1,41 @@
+.container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+.heading {
+  font-size: 28px;
+  text-align: left;
+  width: 88vw;
+}
+.loginForm {
+  background-color: white;
+  padding: 16px 10px;
+  border-radius: 5px;
+  width: 88vw;
+}
+.submit {
+  width: 88vw;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@media (min-width: 768px) {
+  .loginForm {
+    width: 60vw;
+  }
+  .submit {
+    width: 60vw;
+  }
+}
+@media (min-width: 1024px) {
+  .loginForm {
+    width: 40vw;
+  }
+  .submit {
+    width: 40vw;
+  }
+}

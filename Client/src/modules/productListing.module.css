@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.floatingAddIcon,
+.floatingLogoutIcon {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  padding: 14px;
+  border-radius: 50%;
+  color: white;
+  background-color: green;
+  border: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+.floatingLogoutIcon {
+  bottom: 100px;
+  padding: 12px;
+  background-color: rgb(255, 33, 33);
+}
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 1024px) {
+  .floatingAddIcon,
+  .floatingLogoutIcon {
+    right: 80px;
+  }
+  .floatingAddIcon {
+    bottom: 60px;
+  }
+  .floatingLogoutIcon {
+    bottom: 140px;
+  }
+}

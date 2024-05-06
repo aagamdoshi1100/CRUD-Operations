@@ -18,9 +18,10 @@ const Card = ({ data }) => {
         <span className={cardStyle.discountPercentageText}>off</span>
       </p>
       {user.isAdmin && (
-        <>
+        <div className={cardStyle.actions}>
           <FiEdit
             size="1.6em"
+            className={cardStyle.editIcon}
             onClick={() =>
               setProducts({
                 ...products,
@@ -35,8 +36,12 @@ const Card = ({ data }) => {
               })
             }
           />
-          <MdDeleteOutline size="1.8em" onClick={() => deleteProduct(_id)} />
-        </>
+          <MdDeleteOutline
+            size="2em"
+            className={cardStyle.deleteIcon}
+            onClick={() => deleteProduct(_id)}
+          />
+        </div>
       )}
     </div>
   );
